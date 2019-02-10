@@ -40,17 +40,17 @@ def sub():
 #weather function   
 def weather():
     api_address='http://api.openweathermap.org/data/2.5/weather?'
-    api_address += 'appid=603ae1e03c8079fcd72993096c94ebb6'+'&q='
+    api_address += 'appid=<enter your api addredss>'+'&q='       #enter your api adderss here
     url=api_address + city
     json_data=requests.get(url).json()
-    temp=int(json_data['main']['temp']-273.15)  #temperature
     x = json_data
     y = x['main']
-    current_pressure = y["pressure"]
+    current_temperature = y['temp']-273.15
+    current_pressure = y['pressure']
     current_humidity = y["humidity"]
-    z = x["weather"]
-    weather_description = z[0]["description"]
-    e1.insert(0,str(temp)+chr(176)+'C')
+    z = x['weather']
+    weather_description = z[0]['description']
+    e1.insert(0,str(current_temperature)+chr(176)+'C')
     e3.insert(0,str(current_humidity)+' %')
     e4.insert(0,weather_description)
     e5.insert(0,str(current_pressure)+' hPa(hetropascal)')
